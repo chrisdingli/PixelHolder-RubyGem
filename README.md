@@ -18,8 +18,26 @@ Requirements
 
 Usage
 ---
+Create a red 300x500 rectangle
 ```
-pixelholder = PixelHolder.new('color:f00', '300x500','config/flickr.yml')
+pixelholder = PixelHolder.new('color:f00', '300x500')
+pixelholder.get_blob()
+```
+Create a 300x500 picture of a cat
+```
+pixelholder = PixelHolder.new('cat', '300x500')
+pixelholder.get_blob()
+```
+You can also insert an optional path to your flickr_fu config file if it is not found at `./config/flickr.yml`
+```
+pixelholder = PixelHolder.new('cat', '300x500', 'config/flickr_2.yml')
+pixelholder.get_blob()
+```
+A hash of options can be inserted to add things like text overlays. Setting the config path to nil will load the default file `config/flickr.yml`
+```
+pixelholder_options = Hash.new(false)
+pixelholder_options[:text] = 'Hello!'
+pixelholder = PixelHolder.new('color:f00', '300x500', nil, pixelholder_options)
 pixelholder.get_blob()
 ```
 
