@@ -5,7 +5,7 @@ class PixelHolderTest < Test::Unit::TestCase
 
   def setup
     options = Hash.new(false)
-    @pixelholder = PixelHolder.new('color:000', '300', options)
+    @pixelholder = PixelHolder.new('color:000', '300')
   end
 
   def teardown

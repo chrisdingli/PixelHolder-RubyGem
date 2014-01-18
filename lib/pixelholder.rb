@@ -7,7 +7,7 @@ require 'RMagick'
 class PixelHolder
 
 	# Initialize the object
-	def initialize(subject, dimensions, extra_options, flickr_config_path = nil)
+	def initialize(subject, dimensions, flickr_config_path = nil, extra_options = Hash.new(false))
 		# In case we ever decide to allow extra formats for whatever reason
 		@image_format = extra_options[:image_format] ? extra_options[:image_format] : 'jpg'
 
