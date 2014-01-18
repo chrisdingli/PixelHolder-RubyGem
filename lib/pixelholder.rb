@@ -1,27 +1,30 @@
 # pixelholder.rb
 
 require 'rubygems'
-require 'bundler'
 require 'flickr_fu'
 require 'RMagick'
 
 class PixelHolder
 
 	# Initialize the object
-	def initialize(subject, dimensions, extra_options)
+	def initialize(subject, dimensions, extra_options, flickr_config_path = nil)
 		# In case we ever decide to allow extra formats for whatever reason
 		@image_format = extra_options[:image_format] ? extra_options[:image_format] : 'jpg'
 
 		# Set image dimensions values
-		dimensions = dimensions.downcase.split('x')
-		default_dimension = 200
-
-		@width = dimensions[0].to_i
-
-		if dimensions[1].nil? then @height = @width
+		if is_numeric(dimensions)
+			@width = @height = dimensions.to_i
 		else
-			@height = dimensions[1].to_i
-			if(@height == 0) then @height = default_dimension end
+			dimensions = dimensions.downcase.split('x')
+			default_dimension = 200
+
+			@width = dimensions[0].to_i
+
+			if dimensions[1].nil? then @height = @width
+			else
+				@height = dimensions[1].to_i
+				if(@height == 0) then @height = default_dimension end
+			end
 		end
 
 		# Create image with background
@@ -48,7 +51,9 @@ class PixelHolder
 		else
 			seed = extra_options[:seed] ? extra_options[:seed].to_i : 0
 			
-			flickr = Flickr.new('config/flickr.yml')
+			flickr_config_path = flickr_config_path ? flickr_config_path : 'config/flickr.yml'
+
+			flickr = Flickr.new(flickr_config_path)
 
 			# Grab all images with Creative Commons licencing
 			photos = flickr.photos.search(:tags => subject[0], :tag_mode => 'all', :license => '4,5,6,7', :media => 'photo')
@@ -78,6 +83,11 @@ class PixelHolder
 			generate_overlay_text(extra_options[:text], extra_options[:text_color])
 		end
 
+	end
+
+	# Test if a value is numeric
+	def is_numeric(value)
+		true if Integer(value) rescue false
 	end
 
 	# Returns a blob string of the generated image

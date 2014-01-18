@@ -9,6 +9,8 @@ Installation
 gem install pixelholder
 ```
 
+PixelHolder makes use of the [flickr_fu](https://rubygems.org/gems/flickr_fu) Flickr library. Please see [the PixelHolder-Sinatra project](https://github.com/chrisdingli/PixelHolder-Sinatra) for a sample implementation.
+
 Usage
 ---
 ```

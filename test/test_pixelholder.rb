@@ -46,4 +46,13 @@ class PixelHolderTest < Test::Unit::TestCase
       @pixelholder.get_hex('F')
   end
 
+  def test_is_numeric
+    assert_equal true, 
+      @pixelholder.is_numeric('300')
+    assert_equal false,  
+      @pixelholder.is_numeric('300x400')
+    assert_equal false,  
+      @pixelholder.is_numeric('xxx')
+  end
+
 end

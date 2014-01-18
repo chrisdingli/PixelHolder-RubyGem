@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'pixelholder'
-  s.version     = '1.2.1'
+  s.version     = '1.2.2'
   s.date        = '2014-01-18'
   s.summary     = "A placeholder image generator"
   s.description = "A simple placeholder image generator"
