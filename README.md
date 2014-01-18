@@ -15,7 +15,7 @@ Usage
 ---
 ```
 pixelholder_options = Hash.new(false)
-pixelholder = PixelHolder.new('color:f00', '300x500', pixelholder_options)
+pixelholder = PixelHolder.new('color:f00', '300x500', pixelholder_options, 'config/flickr.yml')
 pixelholder.get_blob()
 ```
 
