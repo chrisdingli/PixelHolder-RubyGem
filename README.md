@@ -22,7 +22,7 @@ Options
 ```
 pixelholder_options = {
   :seed => integer # Works only with images. Picks another image
-  :text => string # Changes the overlay text to whatever string you wish to use. For spaces, use %20 in the URL
+  :text => string # Changes the overlay text to whatever string you wish to use
   :text => 'add_dimensions' # Similar to adding text, this will add the dimensions of the image as an overlay
   :text_color => {hex color code} # e.g. cc9900 - Changes the overlay text color. Do not use a hash (#) symbol
 }
