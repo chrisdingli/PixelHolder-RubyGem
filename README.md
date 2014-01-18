@@ -9,15 +9,21 @@ Installation
 gem install pixelholder
 ```
 
-PixelHolder makes use of the [flickr_fu](https://rubygems.org/gems/flickr_fu) Flickr library. Please see [the PixelHolder-Sinatra project](https://github.com/chrisdingli/PixelHolder-Sinatra) for a sample implementation.
+Requirements
+---
+* Ruby 2.0.0
+* Imagick
+* [flickr_fu](https://rubygems.org/gems/flickr_fu) Flickr library
+* [RMagick](https://rubygems.org/gems/rmagick) image manipulation library
 
 Usage
 ---
 ```
-pixelholder_options = Hash.new(false)
-pixelholder = PixelHolder.new('color:f00', '300x500', pixelholder_options, 'config/flickr.yml')
+pixelholder = PixelHolder.new('color:f00', '300x500','config/flickr.yml')
 pixelholder.get_blob()
 ```
+
+Please see [the PixelHolder-Sinatra project](https://github.com/chrisdingli/PixelHolder-Sinatra) for a sample implementation.
 
 Options
 ---
