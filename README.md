@@ -1,55 +1,56 @@
-PixelHolder-RubyGem
-===================
+# PixelHolder-RubyGem
 
-The PixelHolder RubyGem - A standalone RubyGem for creating image placeholders.
+The PixelHolder RubyGem - A RubyGem for creating image placeholders.
 
-Installation
----
+## Installation
+
 ```
 gem install pixelholder
 ```
 
-Requirements
----
-* Ruby 2.0.0
-* Imagick
-* [flickr_fu](https://rubygems.org/gems/flickr_fu) Flickr library
-* [RMagick](https://rubygems.org/gems/rmagick) image manipulation library
+## Usage
 
-Usage
----
-Create a red 300x500 rectangle
+Flickr Images:
 ```
-pixelholder = PixelHolder.new('color:f00', '300x500')
-pixelholder.get_blob()
-```
-Create a 300x500 picture of a cat
-```
-pixelholder = PixelHolder.new('cat', '300x500')
-pixelholder.get_blob()
-```
-You can also insert an optional path to your flickr_fu config file if it is not found at `./config/flickr.yml`
-```
-pixelholder = PixelHolder.new('cat', '300x500', 'config/flickr_2.yml')
-pixelholder.get_blob()
-```
-A hash of options can be inserted to add things like text overlays. Setting the config path to nil will load the default file `config/flickr.yml`
-```
-pixelholder_options = Hash.new(false)
-pixelholder_options[:text] = 'Hello!'
-pixelholder = PixelHolder.new('color:f00', '300x500', nil, pixelholder_options)
-pixelholder.get_blob()
+image = PixelHolder::Flickr.new(options = {})
 ```
 
-Please see [the PixelHolder-Sinatra project](https://github.com/chrisdingli/PixelHolder-Sinatra) for a sample implementation.
-
-Options
----
+Gradient:
 ```
-pixelholder_options = {
-  :seed => integer # Works only with images. Picks another image
-  :text => string # Changes the overlay text to whatever string you wish to use
-  :text => 'add_dimensions' # Similar to adding text, this will add the dimensions of the image as an overlay
-  :text_color => {hex color code} # e.g. cc9900 - Changes the overlay text color. Do not use a hash (#) symbol
+image = PixelHolder::Gradient.new(options = {})
+```
+
+Solid Fill:
+```
+image = PixelHolder::Fill(options = {})
+```
+
+The PixelHolder classes have an accessible canvas variable (our generated image). To get the image as a blob:
+```
+blob = image.canvas.to_blob
+```
+
+### Options
+```
+options = {
+  width: 600,
+  height: 300,
+  text: "whatever you want to go here can go here!", # Your overlay text. Set to "show_dimensions" to show image dimensions
+  text_color: "#ffffff", # Color for overlay text
+  image_format: "jpg", # Image format - jpg, png etc.
+
+  # Fill only
+  background_color: "#0099cc", # Six character hex color code
+
+  # Gradient only
+  direction: "horizontal", # Horizontal or vertical gradient. Default vertical.
+  start_color: "#ffffff", # Six character hex color code
+  end_color: "#0099cc", # Six character hex color code
+
+  # Flickr Only
+  flickr_tags: "cat,dog", # Comma separated tags.
+  flickr_key: "<your flickr key>",
+  flickr_secret: "<your flickr secret>",
+  seed: 4 # Integer to select a different image result from Flickr
 }
 ```
