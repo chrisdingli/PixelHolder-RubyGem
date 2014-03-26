@@ -2,7 +2,7 @@
 
 require "rubygems"
 
-require_relative "modules/placeholder"
-require_relative "modules/fill"
-require_relative "modules/gradient"
-require_relative "modules/flickr"
+require "pixelholder/base"
+require "pixelholder/fill"
+require "pixelholder/gradient"
+require "pixelholder/flickr"

@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.email       = 'cldingli@gmail.com'
   s.files       = [
     "lib/pixelholder.rb",
-    "lib/modules/placeholder.rb",
-    "lib/modules/fill.rb",
-    "lib/modules/gradient.rb",
-    "lib/modules/flickr.rb"
+    "lib/pixelholder/base.rb",
+    "lib/pixelholder/fill.rb",
+    "lib/pixelholder/gradient.rb",
+    "lib/pixelholder/flickr.rb"
   ]
   s.homepage    = 'http://github.com/chrisdingli/pixelholder-rubygem'
   s.license     = 'MIT'

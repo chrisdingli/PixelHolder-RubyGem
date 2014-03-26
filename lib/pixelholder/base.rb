@@ -1,44 +1,49 @@
 require "RMagick"
 
 module PixelHolder
+  def self.base
+    Base.new
+  end
+end
 
-  class Placeholder
+class PixelHolder::Base
 
-    attr_reader :canvas, :width, :height, :image_format
+  attr_reader :canvas, :width, :height, :image_format
 
-    def initialize(options = {})
-        @options = options
-        set_options
-    end
+  def initialize(options = {})
+      @options = options
+      set_options
+  end
 
-    private
+  private
 
-    def set_options
-      @width = @options[:width].to_i || 800
-      @height = @options[:height].to_i || 600
-      @image_format = @options[:image_format] || "jpg"
-    end
+  def set_options
+    @width = @options[:width].to_i || 800
+    @height = @options[:height].to_i || 600
+    @image_format = @options[:image_format] || "jpg"
+  end
 
-    def generate_canvas(fill = nil)
-      background_color = @options[:background_color] || "#ffffff"
-      image_format = @image_format
+  def generate_canvas(fill = nil)
+    background_color = @options[:background_color] || "#ffffff"
+    image_format = @image_format
 
-      unless fill.nil?
-        @canvas = Magick::Image.new(@width, @height, fill) do
-          self.background_color = background_color
-          self.format = image_format
-        end
-      else
-        @canvas = Magick::Image.new(@width, @height) do
-          self.background_color = background_color
-          self.format = image_format
-        end
+    unless fill.nil?
+      @canvas = Magick::Image.new(@width, @height, fill) do
+        self.background_color = background_color
+        self.format = image_format
       end
-
-      add_text_overlay  
+    else
+      @canvas = Magick::Image.new(@width, @height) do
+        self.background_color = background_color
+        self.format = image_format
+      end
     end
 
-    def add_text_overlay
+    add_text_overlay
+  end
+
+  def add_text_overlay
+    unless @options[:text].nil?
       if @options[:text] == "show_dimensions"
         overlay_text = "#{@width} #{215.chr} #{@height}"
       else

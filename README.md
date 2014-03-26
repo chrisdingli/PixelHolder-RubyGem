@@ -22,7 +22,7 @@ image = PixelHolder::Gradient.new(options = {})
 
 Solid Fill:
 ```
-image = PixelHolder::Fill(options = {})
+image = PixelHolder::Fill.new(options = {})
 ```
 
 The PixelHolder classes have an accessible canvas variable (our generated image). To get the image as a blob:
