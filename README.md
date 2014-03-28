@@ -30,6 +30,8 @@ The PixelHolder classes have an accessible canvas variable (our generated image)
 blob = image.canvas.to_blob
 ```
 
+PixelHolder can also be extended by extending the base class PixelHolder::Base. This allows you to create customised placeholder classes quickly without setting up the foundations needed.
+
 ### Options
 ```
 options = {
