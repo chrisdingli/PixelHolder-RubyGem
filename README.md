@@ -2,6 +2,8 @@
 
 The PixelHolder RubyGem - A RubyGem for creating image placeholders.
 
+Check out [PixelHolder Sinatra](https://github.com/chrisdingli/PixelHolder-Sinatra) for a sample implementation.
+
 ## Installation
 
 ```
